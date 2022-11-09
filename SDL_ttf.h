@@ -845,7 +845,7 @@ extern DECLSPEC int SDLCALL TTF_SizeText(TTF_Font *font, const char *text, int *
  * This does not need to render the string to do this calculation.
  *
  * \param font the font to query.
- * \param text text to calculate, in Latin1 encoding.
+ * \param text text to calculate, in UTF-8 encoding.
  * \param w will be filled with width, in pixels, on return.
  * \param h will be filled with height, in pixels, on return.
  * \returns 0 if successful, -1 on error.
@@ -2032,7 +2032,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_LCD(TTF_Font *font,
  * Dispose of a previously-created font.
  *
  * Call this when done with a font. This function will free any resources
- * associated with it.
+ * associated with it. It is safe to call this function on NULL, for example
+ * on the result of a failed call to TTF_OpenFont().
  *
  * The font is not valid after being passed to this function. String pointers
  * from functions that return information on this font, such as
@@ -2043,6 +2044,7 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_LCD(TTF_Font *font,
  *
  * \since This function is available since SDL_ttf 2.0.12.
  *
+ * \sa TTF_OpenFont
  * \sa TTF_OpenFontIndexDPIRW
  * \sa TTF_OpenFontRW
  * \sa TTF_OpenFontDPI
